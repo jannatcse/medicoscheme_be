@@ -1310,7 +1310,7 @@ export const GetReportInfo = async (req, res, next) => {
       SELECT 
      appointment_date,report_id,"type",patient_id,full_name,picture,age,gender,phone_no,address
       FROM 
-        ${process.env.Schema}.GetBookedLabs(${id})
+        ${process.env.Schema}.getreportinfo(${id})
     `,
       {
         type: QueryTypes.SELECT,
