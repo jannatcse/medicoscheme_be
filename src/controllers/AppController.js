@@ -1509,17 +1509,9 @@ export const DoctorDashboard = async (req, res, next) => {
     const TransactionsInfo = await db.query(
       `
       SELECT 
-        a.id, a.patient_id, pa.full_name, pa.age, pa.gender, p.amount, p.trx_id, a.status, a.is_new, a.appointment_date
-      FROM
-        ${process.env.Schema}.appointments a,
-        ${process.env.Schema}.payments p,
-        ${process.env.Schema}.users u,
-        ${process.env.Schema}.patients pa
-      WHERE 
-        a.doctor_id = ${req.user.id} AND
-        a.payment_id = p.id AND
-        a.patient_id = u.id AND
-        u."user" = pa.id
+      id, patient_id, pfull_name, page, pgender, amount, trx_id, status, is_new, appointment_date
+            FROM
+        ${process.env.Schema}.DoctorDashboard(${req.user.id})
     `,
       {
         type: QueryTypes.SELECT,
